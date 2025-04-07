@@ -1,6 +1,6 @@
 # dev-easy-project
 Dev Easy Project
-Contributors: Carly Copley, Dylan Godwin, Laura Lemoine, Matthew Wise
+Contributors: Carly Copley, Dylan Goodwin, Laura Lemoine, Matthew Wise
 
 Search Bar Sources:
 - https://www.w3schools.com/howto/howto_css_searchbar.asp
