@@ -1,26 +1,670 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Email Domain Analysis</title>
+  <title>dev-easy</title>
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
   <link rel="stylesheet" href="styles/style.css">
+
 </head>
+
 <body>
+  <!-- partial:index.partial.html -->
+  <div id="myNavbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">🦭Dev Easy Project🦭</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-  <h1 id="findOut">Find Out How Secure An Email Domain Is</h1>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="https://dgoodwin-maker.github.io/dev-easy-project/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active"
+                href="https://github.com/dgoodwin-maker/dev-easy-project/blob/main/images/Wireframe.png?raw=true"
+                target="_blank">Wireframe</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="https://www.w3schools.com/howto/howto_css_flip_card.asp"
+                target="_blank">Flippable</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active"
+                href="https://stackoverflow.com/questions/65485778/javascript-how-can-i-create-multiple-flip-cards-that-flip-with-an-onclick"
+                target="_blank">Flip function(1)</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active"
+                href="https://stackoverflow.com/questions/26901011/multiple-card-flip-using-getelelementsbyclass"
+                target="_blank">Flip function(2)</a>
+            </li>
+            <!-- Search Bar and Button -->
+            <li class="nav-item">
+              <div class="search">
+                <input id="searchbar" type="text" name="search" placeholder="Search facts..">
+                <button onclick="search_fact()" type="submit">
+                  <img
+                    src="https://github.com/dgoodwin-maker/dev-easy-project/blob/main/images/icons8-search-50.png?raw=true"
+                    alt="Search Icon">
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <button id="flipAll" class="btn btn-outline-dark">Flip All Cards
+  </button>
 
-  <h2 id="analysisDetails">Analysis Details (DMARC, SPF Record List, chances of brand impersonation)</h2>
 
-  <div id="domainForm">
-    <form>
-      <label for="domainSubmitted" id="formLabel">Enter Domain Name:</label>
-      <input type="text" id="domainSubmitted" name="domainSubmitted" placeholder="example.com">
-      <button type="submit" id="getResults">Search</button>
-    </form>
+  <div id="likedContainer" class="container mt-5">
+    <div class="card-container">
+      <h2>Liked Facts</h2>
+    </div>
   </div>
 
-  <h2 id="h2results">Results</h2>
+  <!-- cards -->
+  <div id="allFacts" class="container mt-5">
+    <h2>All Class Facts</h2>
+
+    <div class="card-container">
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p>Flip me for a fact!</p>
+          </div>
+          <div class="flip-card-back">
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="heart btn btn-light" type="button" onclick="liked(this)">
+            Like
+            <img class="heart-img emptyHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-empty.svg"
+              alt="emptyHeartImage">
+            <img class="heart-img fullHeart"
+              src="https://raw.githubusercontent.com/dgoodwin-maker/dev-easy-project/c9046dc813c20171041b92e0793c820b461c84c2/images/heart-fill.svg"
+              alt="fullHeartImage" style="display:none;">
+          </button>
+        </div>
+      </div>
+    </div>
+    <br><br>
+</div>
+<br><br><br>
+    
+
+
+      <footer class="bg-dark text-white text-center py-3">
+
+        <a href="https://github.com/dgoodwin-maker/dev-easy-project" target="_blank">
+          <img src="https://assets-v2.lottiefiles.com/a/f62481a4-1172-11ee-aa7c-232f008dfb14/Sl4fTVnhQL.gif"
+            alt="github logo" width="35" height="29">Github Repository</a>
+        <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fdgoodwin-maker.github.io%2Fdev-easy-project%2F" target="_blank">NuValidator</a>
+        <a href="https://wave.webaim.org/report#/https://dgoodwin-maker.github.io/dev-easy-project/" target="_blank">Wave</a>
+      </footer>
+
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js'></script>
+<script src="scripts/script.js"></script>
 
 </body>
+
 </html>
